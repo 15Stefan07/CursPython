@@ -16,7 +16,7 @@ class AuditLocation(models.Model):
     country = models.CharField(max_length=90)
     active = models.BooleanField(default=1)
     location = models.IntegerField()
-    user = models.ForeignKey('auth.User',on_delete=models.CASCADE, default=1)
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE, default=1)
     def __str__(self):
         return f"{self.country} -- {self.city}"
 
