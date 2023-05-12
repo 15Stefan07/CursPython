@@ -15,26 +15,33 @@ header_list = header.text.split(" ")
 # print(type(header_list))
 # //*[@id="post-29587"]/div/div/table[1]/tbody/tr[1]/td[1]
 cap_tabel = []
-cap_tabel.append(header_list[0]+ " "+ header_list[1])
+cap_tabel.append(header_list[0] + " " + header_list[1])
 cap_tabel.append(header_list[2])
 cap_tabel.append("01.03")
 cap_tabel.append("02.03")
 cap_tabel.append("03.03")
 cap_tabel.append("04.03")
 cap_tabel.append("05.03")
-# print(cap_tabel)
+print(cap_tabel)
 
 lista_orase = []
-for i in range(2,46):
+for i in range(2, 46):
     text_tabel = browser.find_element(by=By.XPATH, value="//*[@id=\"post-29587\"]/div/div/table[1]/tbody/tr[{0}]/td[2]".format(i))
     lista_orase.append(text_tabel.text)
+lista_orase.append(browser.find_element(by=By.XPATH, value="//*[@id=\"post-29587\"]/div/div/table[1]/tbody/tr[46]/td[1]").text)
 # print(lista_orase)
 # print("\n")
 
+# //*[@id="post-29587"]/div/div/table[1]/tbody/tr[45]/td[2]
+# //*[@id="post-29587"]/div/div/table[1]/tbody/tr[46]/td[1]
+
+
 nr_crt = []
-for i in range(2,46):
+for i in range(2, 46):
     text_tabel = browser.find_element(by=By.XPATH, value="//*[@id=\"post-29587\"]/div/div/table[1]/tbody/tr[{0}]/td[1]".format(i))
     nr_crt.append(text_tabel.text)
+nr_crt.append('')
+# print(nr_crt)
 
 # print(nr_crt)
 # print("\n")
@@ -51,19 +58,23 @@ for i in range(2,46):
 # //*[@id="post-29726"]/div/div/table[1]/tbody/tr[45]/td[3]
 
 date_ziua_unu = []
-for i in range(2,47):
+for i in range(2, 46):
     text_tabel = browser.find_element(by=By.XPATH, value="//*[@id=\"post-29587\"]/div/div/table[1]/tbody/tr[{0}]/td[3]".format(i))
     date_ziua_unu.append(text_tabel.text)
+date_ziua_unu.append(browser.find_element(by=By.XPATH, value="//*[@id=\"post-29587\"]/div/div/table[1]/tbody/tr[46]/td[2]").text)
+
 # print(date_ziua_unu)
 # print("\n")
 
+# //*[@id="post-29587"]/div/div/table[1]/tbody/tr[46]/td[2]
 
 browser.get("https://www.mai.gov.ro/informare-covid-19-grupul-de-comunicare-strategica-2-martie-ora-13-00-2/")
 
 date_ziua_doi = []
-for i in range(2,46):
+for i in range(2, 46):
     text_tabel = browser.find_element(by=By.XPATH, value="//*[@id=\"post-29627\"]/div/div/table[1]/tbody/tr[{0}]/td[3]".format(i))
     date_ziua_doi.append(text_tabel.text)
+date_ziua_doi.append(browser.find_element(by=By.XPATH, value="//*[@id=\"post-29627\"]/div/div/table[1]/tbody/tr[46]/td[2]").text)
 # print(date_ziua_doi)
 # print("\n")
 
@@ -71,34 +82,37 @@ for i in range(2,46):
 browser.get("https://www.mai.gov.ro/informare-covid-19-grupul-de-comunicare-strategica-3-martie-ora-13-00-2/")
 
 date_ziua_trei = []
-for i in range(2,46):
+for i in range(2, 46):
     text_tabel = browser.find_element(by=By.XPATH, value="//*[@id=\"post-29664\"]/div/div/table[1]/tbody/tr[{0}]/td[3]".format(i))
     date_ziua_trei.append(text_tabel.text)
+date_ziua_trei.append(browser.find_element(by=By.XPATH, value="//*[@id=\"post-29664\"]/div/div/table[1]/tbody/tr[46]/td[2]").text)
 # print(date_ziua_trei)
 # print("\n")
 
 browser.get("https://www.mai.gov.ro/informare-covid-19-grupul-de-comunicare-strategica-4-martie-ora-13-00-3/")
 
 date_ziua_patru = []
-for i in range(2,46):
+for i in range(2, 46):
     text_tabel = browser.find_element(by=By.XPATH, value="//*[@id=\"post-29690\"]/div/div/table[1]/tbody/tr[{0}]/td[3]".format(i))
     date_ziua_patru.append(text_tabel.text)
+date_ziua_patru.append(browser.find_element(by=By.XPATH, value="//*[@id=\"post-29690\"]/div/div/table[1]/tbody/tr[46]/td[2]").text)
 # print(date_ziua_patru)
 # print("\n")
 
 browser.get("https://www.mai.gov.ro/informare-covid-19-grupul-de-comunicare-strategica-5-martie-ora-13-00/")
 
 date_ziua_cinci = []
-for i in range(2,46):
+for i in range(2, 46):
     text_tabel = browser.find_element(by=By.XPATH, value="//*[@id=\"post-29726\"]/div/div/table[1]/tbody/tr[{0}]/td[3]".format(i))
     date_ziua_cinci.append(text_tabel.text)
+date_ziua_cinci.append(browser.find_element(by=By.XPATH, value="//*[@id=\"post-29726\"]/div/div/table[1]/tbody/tr[46]/td[2]").text)
 # print(date_ziua_cinci)
 # print("\n")
 
 
 dictionar = {i: [] for i in cap_tabel}
-for j in range(0,len(cap_tabel)):
-    for i in range(44):
+for j in range(0, len(cap_tabel)):
+    for i in range(45):
         if j == 0:
             dictionar[cap_tabel[int(j)]].append(nr_crt[i])
         elif j == 1:
@@ -116,4 +130,4 @@ for j in range(0,len(cap_tabel)):
 
 print(dictionar)
 df = pd.DataFrame(dictionar)
-df.to_excel("INFO_COVID19.xlsx")
+df.to_excel("INFO_COVID19.xlsx", index=False)
